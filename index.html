@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file:///C:/Users/zahid/Downloads/hardware_50yr_knowledge_map_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50-Year Hardware Design Engineer — Knowledge Map</title>
+<link href="./50-Year Hardware Design Engineer — Knowledge Map_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --grid-line: rgba(255,255,255,0.04);
+    --accent: #c8ff00;
+    --accent2: #00ffe0;
+    --accent3: #ff6b35;
+    --text: #e8e8f0;
+    --text-muted: #7a7a90;
+    --text-dim: #4a4a60;
+
+    /* Category colors */
+    --c1: #7c6dfa; --c1l: rgba(124,109,250,0.12); --c1b: rgba(124,109,250,0.25);
+    --c2: #fa6d6d; --c2l: rgba(250,109,109,0.12); --c2b: rgba(250,109,109,0.25);
+    --c3: #faa83d; --c3l: rgba(250,168,61,0.12);  --c3b: rgba(250,168,61,0.25);
+    --c4: #3ddbb8; --c4l: rgba(61,219,184,0.12);  --c4b: rgba(61,219,184,0.25);
+    --c5: #4d9fff; --c5l: rgba(77,159,255,0.12);  --c5b: rgba(77,159,255,0.25);
+    --c6: #7ddd55; --c6l: rgba(125,221,85,0.12);  --c6b: rgba(125,221,85,0.25);
+    --c7: #f06bba; --c7l: rgba(240,107,186,0.12); --c7b: rgba(240,107,186,0.25);
+    --c8: #a0a0b8; --c8l: rgba(160,160,184,0.12); --c8b: rgba(160,160,184,0.25);
+    --c9: #ffdb4d; --c9l: rgba(255,219,77,0.12);  --c9b: rgba(255,219,77,0.25);
+    --c10: #ff8c69; --c10l: rgba(255,140,105,0.12); --c10b: rgba(255,140,105,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px 60px;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    max-width: 1100px;
+    margin: 0 auto 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 32px;
+  }
+  .header-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .header h1 span { color: var(--accent); }
+  .header-sub {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 620px;
+  }
+  .header-meta {
+    margin-top: 20px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+  }
+  .meta-pill b { color: var(--accent); font-weight: 500; }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+
+  .row { display: grid; gap: 10px; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--bg2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .section-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .section-count {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+  .cards-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--bg2);
+    padding: 14px 14px 12px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    position: relative;
+    border: none;
+    text-align: left;
+    color: var(--text);
+    width: 100%;
+  }
+  .card:hover { background: var(--bg3); }
+  .card:active { transform: scale(0.98); }
+
+  .card-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-bottom: 7px;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  .card-sub {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .card-tags {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-dim);
+  }
+
+  /* ── FULL-WIDTH CARD ── */
+  .card-wide {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .card-wide .card-body { flex: 1; min-width: 200px; }
+  .card-wide .card-points {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  /* ── LEVEL BADGE ── */
+  .level {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .level-legend { background: rgba(200,255,0,0.12); color: var(--accent); border: 1px solid rgba(200,255,0,0.2); }
+  .level-master { background: rgba(0,255,224,0.1); color: var(--accent2); border: 1px solid rgba(0,255,224,0.2); }
+  .level-principal { background: rgba(255,107,53,0.12); color: var(--accent3); border: 1px solid rgba(255,107,53,0.2); }
+
+  /* ── COLOR HELPERS ── */
+  .c1 { color: var(--c1); } .bg1 { background: var(--c1l); border-color: var(--c1b) !important; }
+  .c2 { color: var(--c2); } .bg2c { background: var(--c2l); border-color: var(--c2b) !important; }
+  .c3 { color: var(--c3); } .bg3 { background: var(--c3l); border-color: var(--c3b) !important; }
+  .c4 { color: var(--c4); } .bg4 { background: var(--c4l); border-color: var(--c4b) !important; }
+  .c5 { color: var(--c5); } .bg5 { background: var(--c5l); border-color: var(--c5b) !important; }
+  .c6 { color: var(--c6); } .bg6 { background: var(--c6l); border-color: var(--c6b) !important; }
+  .c7 { color: var(--c7); } .bg7 { background: var(--c7l); border-color: var(--c7b) !important; }
+  .c8 { color: var(--c8); } .bg8 { background: var(--c8l); border-color: var(--c8b) !important; }
+  .c9 { color: var(--c9); } .bg9 { background: var(--c9l); border-color: var(--c9b) !important; }
+  .c10 { color: var(--c10); } .bg10 { background: var(--c10l); border-color: var(--c10b) !important; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 20px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+  /* ── FOOTER ── */
+  .footer {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 16px;
+  }
+  .footer-left { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 10px; font-family: 'DM Mono', monospace; color: var(--text-muted); }
+  .legend-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  @media (max-width: 700px) {
+    .row-2, .row-3, .row-4 { grid-template-columns: 1fr; }
+    .cards-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── CARD CLICKABLE ── */
+  .card { cursor: pointer; }
+  .card:hover { background: var(--bg3); }
+  .card:active { transform: scale(0.98); }
+  .card-click-hint {
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .card:hover .card-click-hint { opacity: 1; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-label">// Knowledge Architecture</div>
+  <h1>50-Year Hardware<br>Design <span>Engineer</span></h1>
+  <p class="header-sub">A comprehensive map of technical depth, institutional wisdom, and leadership capabilities expected at the principal / fellow / distinguished engineer level.</p>
+  <div class="header-meta">
+    <div class="meta-pill"><b>10</b> domains</div>
+    <div class="meta-pill"><b>60+</b> topic areas</div>
+    <div class="meta-pill"><b>3</b> mastery tiers</div>
+    <div class="meta-pill"><b>Legend</b> · Master · Principal</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ─── TIER 1: FOUNDATIONAL PHYSICS ─── -->
+  <div class="divider">Tier I — Deep Physics &amp; Theory</div>
+
+  <div class="row row-2">
+
+    <!-- 1. Advanced Circuit Theory -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c1)"></div>
+        <div class="section-title c1">Advanced Circuit Theory</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg1 c1">Foundations</span>
+          <div class="card-title">Nonlinear Circuit Analysis</div>
+          <div class="card-sub">Volterra series, harmonic balance, describing functions for large-signal nonlinear behavior</div>
+          <div class="card-tags"><span class="tag">Volterra</span><span class="tag">Harmonic balance</span><span class="tag">DF method</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg1 c1">Foundations</span>
+          <div class="card-title">Distributed Circuit Effects</div>
+          <div class="card-sub">Skin effect, proximity effect, field penetration, PCB trace inductance at multi-GHz</div>
+          <div class="card-tags"><span class="tag">Skin effect</span><span class="tag">Proximity</span><span class="tag">Maxwell</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg1 c1">Foundations</span>
+          <div class="card-title">Two-Port Network Mastery</div>
+          <div class="card-sub">S, Z, Y, H, ABCD parameters; conversion tables; stability circles; noise figure via two-port</div>
+          <div class="card-tags"><span class="tag">S-params</span><span class="tag">Stability</span><span class="tag">NF</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg1 c1">Foundations</span>
+          <div class="card-title">Signal Flow Graphs</div>
+          <div class="card-sub">Mason's rule, SFG reduction, applying to feedback amplifiers and RF circuits</div>
+          <div class="card-tags"><span class="tag">Mason's rule</span><span class="tag">Feedback</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg1 c1">Foundations</span>
+          <div class="card-title">Stochastic Circuit Analysis</div>
+          <div class="card-sub">Process variation, Monte Carlo, worst-case corner analysis, yield optimization</div>
+          <div class="card-tags"><span class="tag">Monte Carlo</span><span class="tag">PVT corners</span><span class="tag">Yield</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg1 c1">Foundations</span>
+          <div class="card-title">Electromagnetic Field Theory</div>
+          <div class="card-sub">Maxwell's equations in engineering context, wave propagation, near/far field, antenna fundamentals</div>
+          <div class="card-tags"><span class="tag">Maxwell</span><span class="tag">Near field</span><span class="tag">Antenna</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+    <!-- 2. Semiconductor Device Physics -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c2)"></div>
+        <div class="section-title c2">Semiconductor Device Physics</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg2c c2">Devices</span>
+          <div class="card-title">Carrier Transport Physics</div>
+          <div class="card-sub">Drift, diffusion, continuity equations; velocity saturation; hot carrier effects in scaled nodes</div>
+          <div class="card-tags"><span class="tag">Drift-diffusion</span><span class="tag">Velocity sat.</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg2c c2">Devices</span>
+          <div class="card-title">Advanced MOSFET Models</div>
+          <div class="card-sub">BSIM4/BSIM-CMG, FinFET, GAAFET physics; short-channel effects; threshold voltage roll-off</div>
+          <div class="card-tags"><span class="tag">BSIM4</span><span class="tag">FinFET</span><span class="tag">SCE</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg2c c2">Devices</span>
+          <div class="card-title">High-Voltage Device Physics</div>
+          <div class="card-sub">LDMOS, IGBT, SiC MOSFET, GaN HEMT breakdown mechanisms, ON-resistance trade-offs</div>
+          <div class="card-tags"><span class="tag">IGBT</span><span class="tag">SiC</span><span class="tag">GaN HEMT</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg2c c2">Devices</span>
+          <div class="card-title">Reliability &amp; Aging Mechanisms</div>
+          <div class="card-sub">NBTI, PBTI, HCI, TDDB, electromigration — physics-based lifetime models, acceleration factors</div>
+          <div class="card-tags"><span class="tag">NBTI</span><span class="tag">TDDB</span><span class="tag">EM</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg2c c2">Devices</span>
+          <div class="card-title">Noise Mechanisms in Devices</div>
+          <div class="card-sub">Thermal, shot, flicker (1/f), burst noise — physical origins, SPICE models, low-noise design implications</div>
+          <div class="card-tags"><span class="tag">1/f noise</span><span class="tag">Shot noise</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg2c c2">Devices</span>
+          <div class="card-title">Passive Component Physics</div>
+          <div class="card-sub">Dielectric loss, core saturation, ESR/ESL, self-resonance, temperature/voltage coefficients at extremes</div>
+          <div class="card-tags"><span class="tag">Dielectric loss</span><span class="tag">ESR</span><span class="tag">SRF</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── TIER 2: ANALOG & MIXED-SIGNAL MASTERY ─── -->
+  <div class="divider">Tier II — Analog &amp; Mixed-Signal Mastery</div>
+
+  <div class="row row-2">
+
+    <!-- 3. IC-Level Analog Design -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c3)"></div>
+        <div class="section-title c3">IC-Level Analog Design</div>
+        <div class="section-count">7 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg3 c3">IC Design</span>
+          <div class="card-title">OTA &amp; Op-Amp Topologies</div>
+          <div class="card-sub">Folded cascode, recycling folded cascode, current mirror OTA, gain-boosting; compensation strategies</div>
+          <div class="card-tags"><span class="tag">Folded cascode</span><span class="tag">Gain boost</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg3 c3">IC Design</span>
+          <div class="card-title">Bandgap &amp; Reference Circuits</div>
+          <div class="card-sub">Curvature correction, PTAT/CTAT trimming, sub-1V references, low-power topologies for IoT</div>
+          <div class="card-tags"><span class="tag">Curvature corr.</span><span class="tag">Sub-1V</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">IC Design</span>
+          <div class="card-title">Continuous-Time Filters</div>
+          <div class="card-sub">Gm-C, MOSFET-C, active-RC filters; tuning techniques; dynamic range / noise / linearity trade-offs</div>
+          <div class="card-tags"><span class="tag">Gm-C</span><span class="tag">MOSFET-C</span><span class="tag">DR</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">IC Design</span>
+          <div class="card-title">Switched-Capacitor Circuits</div>
+          <div class="card-sub">SC integrators, biquads, SC DAC, charge injection, kT/C noise floor, parasitic-insensitive topologies</div>
+          <div class="card-tags"><span class="tag">SC integrator</span><span class="tag">kT/C noise</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">IC Design</span>
+          <div class="card-title">LNA &amp; Low-Noise Amplifiers</div>
+          <div class="card-sub">Noise figure optimization, input matching, IIP3, cascode LNA, distributed amplifier fundamentals</div>
+          <div class="card-tags"><span class="tag">NF</span><span class="tag">IIP3</span><span class="tag">Cascode</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">IC Design</span>
+          <div class="card-title">Current Sources &amp; Mirrors</div>
+          <div class="card-sub">Wilson, Widlar, cascode mirrors; output resistance; matching; systematic/random offset modeling</div>
+          <div class="card-tags"><span class="tag">Wilson</span><span class="tag">Widlar</span><span class="tag">Matching</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">IC Design</span>
+          <div class="card-title">Analog Layout Techniques</div>
+          <div class="card-sub">Common-centroid, interdigitation, guard rings, well isolation, substrate coupling — silicon-level thinking</div>
+          <div class="card-tags"><span class="tag">Common-centroid</span><span class="tag">Mismatch</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+    <!-- 4. Data Converters — Expert Level -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c4)"></div>
+        <div class="section-title c4">Data Converters — Expert Level</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg4 c4">Converters</span>
+          <div class="card-title">ΔΣ Modulator Theory</div>
+          <div class="card-sub">Noise shaping orders, NTF/STF design, multi-bit quantization, MASH topologies, stability analysis</div>
+          <div class="card-tags"><span class="tag">NTF</span><span class="tag">MASH</span><span class="tag">OSR</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg4 c4">Converters</span>
+          <div class="card-title">SAR ADC Architecture</div>
+          <div class="card-sub">Capacitive DAC sizing, binary/split-cap arrays, redundancy, calibration, energy per conversion</div>
+          <div class="card-tags"><span class="tag">Cap DAC</span><span class="tag">Redundancy</span><span class="tag">Cal</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg4 c4">Converters</span>
+          <div class="card-title">Pipeline ADC Design</div>
+          <div class="card-sub">MDAC gain error, inter-stage residue amplifier, digital calibration, SHA-less architectures</div>
+          <div class="card-tags"><span class="tag">MDAC</span><span class="tag">SHA-less</span><span class="tag">Cal</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg4 c4">Converters</span>
+          <div class="card-title">High-Speed DAC Architectures</div>
+          <div class="card-sub">Current-steering DAC, segmentation, dynamic element matching, RF DAC, spectral purity at GHz</div>
+          <div class="card-tags"><span class="tag">Current steering</span><span class="tag">DEM</span><span class="tag">RF DAC</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg4 c4">Converters</span>
+          <div class="card-title">ADC/DAC Testing &amp; Metrology</div>
+          <div class="card-sub">INL/DNL, ENOB, SFDR, THD measurement; histogram test; coherent sampling; jitter separation</div>
+          <div class="card-tags"><span class="tag">INL/DNL</span><span class="tag">SFDR</span><span class="tag">Jitter sep.</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg4 c4">Converters</span>
+          <div class="card-title">Background Calibration</div>
+          <div class="card-sub">LMS/RLS algorithms for ADC calibration, mismatch shaping, foreground vs background, convergence</div>
+          <div class="card-tags"><span class="tag">LMS</span><span class="tag">Mismatch shaping</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── TIER 3: POWER, RF & HIGH-SPEED ─── -->
+  <div class="divider">Tier III — Power, RF &amp; High-Speed Systems</div>
+
+  <div class="row row-3">
+
+    <!-- 5. Advanced Power Electronics -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c3)"></div>
+        <div class="section-title c3">Advanced Power Electronics</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg3 c3">Power</span>
+          <div class="card-title">WBG Power Devices</div>
+          <div class="card-sub">SiC MOSFETs, GaN HEMTs — gate drive, dv/dt control, soft switching, dead-time optimization</div>
+          <div class="card-tags"><span class="tag">SiC</span><span class="tag">GaN</span><span class="tag">dv/dt</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg3 c3">Power</span>
+          <div class="card-title">Resonant Converter Topologies</div>
+          <div class="card-sub">LLC, SRC, LCC, CLLC — ZVS/ZCS conditions, gain curves, design for minimum circulating energy</div>
+          <div class="card-tags"><span class="tag">LLC</span><span class="tag">ZVS</span><span class="tag">ZCS</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">Power</span>
+          <div class="card-title">Magnetics Design</div>
+          <div class="card-sub">Core material selection, gap design, Steinmetz equation, proximity/skin loss, planar magnetics</div>
+          <div class="card-tags"><span class="tag">Steinmetz</span><span class="tag">Planar</span><span class="tag">Cores</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">Power</span>
+          <div class="card-title">Control Loop Design</div>
+          <div class="card-sub">Type II/III compensators, average current mode, voltage mode — small-signal modeling, Bode, phase margin</div>
+          <div class="card-tags"><span class="tag">Type III</span><span class="tag">CCM/DCM</span><span class="tag">Phase margin</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">Power</span>
+          <div class="card-title">Power Integrity at System Level</div>
+          <div class="card-sub">PDN impedance target, decoupling strategy, VRM transient response, die-level IR drop estimation</div>
+          <div class="card-tags"><span class="tag">PDN</span><span class="tag">VRM</span><span class="tag">IR drop</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg3 c3">Power</span>
+          <div class="card-title">Wireless Power Transfer</div>
+          <div class="card-sub">Inductive coupling, Qi standard, resonant WPT, coil design, foreign object detection, efficiency</div>
+          <div class="card-tags"><span class="tag">Qi</span><span class="tag">Resonant WPT</span><span class="tag">FOD</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+    <!-- 6. RF & Microwave Design -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c5)"></div>
+        <div class="section-title c5">RF &amp; Microwave Design</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg5 c5">RF</span>
+          <div class="card-title">Matching Networks &amp; Smith Chart</div>
+          <div class="card-sub">L, π, T networks; stub matching; broadband matching; simultaneous noise/power match</div>
+          <div class="card-tags"><span class="tag">Smith chart</span><span class="tag">Broadband</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg5 c5">RF</span>
+          <div class="card-title">VCO &amp; Oscillator Design</div>
+          <div class="card-sub">LC VCO, Colpitts, cross-coupled, Leeson's model, phase noise vs power, pulling/pushing</div>
+          <div class="card-tags"><span class="tag">Leeson</span><span class="tag">Phase noise</span><span class="tag">Pulling</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg5 c5">RF</span>
+          <div class="card-title">Mixer &amp; Frequency Conversion</div>
+          <div class="card-sub">Gilbert cell, passive mixer, IQ imbalance, conversion gain, LO leakage, sideband suppression</div>
+          <div class="card-tags"><span class="tag">Gilbert cell</span><span class="tag">IQ</span><span class="tag">SSB</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg5 c5">RF</span>
+          <div class="card-title">PA Design &amp; Linearization</div>
+          <div class="card-sub">Class A/B/C/E/F, Doherty, envelope tracking, DPD, back-off efficiency, PAPR</div>
+          <div class="card-tags"><span class="tag">Doherty</span><span class="tag">DPD</span><span class="tag">PAPR</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg5 c5">RF</span>
+          <div class="card-title">PLL Architecture &amp; Synthesis</div>
+          <div class="card-sub">Integer-N, fractional-N, ADPLL, ΔΣ modulation in divider, reference spurs, settling time</div>
+          <div class="card-tags"><span class="tag">Frac-N</span><span class="tag">ADPLL</span><span class="tag">Spurs</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg5 c5">RF</span>
+          <div class="card-title">RF System Link Budget</div>
+          <div class="card-sub">Friis formula, cascaded NF/gain/IIP3, receiver sensitivity, blocker handling, dynamic range</div>
+          <div class="card-tags"><span class="tag">Friis</span><span class="tag">Cascaded IIP3</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+    <!-- 7. Signal Integrity — Expert Level -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c7)"></div>
+        <div class="section-title c7">Signal Integrity — Expert Level</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg7 c7">SI</span>
+          <div class="card-title">Jitter Analysis &amp; Budget</div>
+          <div class="card-sub">RJ/DJ decomposition, bathtub curves, BER estimation, jitter transfer function, SSC</div>
+          <div class="card-tags"><span class="tag">RJ/DJ</span><span class="tag">BER</span><span class="tag">SSC</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-legend">LEGEND</div>
+          <span class="card-badge bg7 c7">SI</span>
+          <div class="card-title">Crosstalk &amp; Coupling</div>
+          <div class="card-sub">NEXT/FEXT, aggressor-victim analysis, guard traces, 3D EM field simulation, via coupling</div>
+          <div class="card-tags"><span class="tag">NEXT/FEXT</span><span class="tag">3D EM</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg7 c7">SI</span>
+          <div class="card-title">Channel Modeling</div>
+          <div class="card-sub">S-parameter extraction, IBIS-AMI, eye diagram simulation, channel operating margin (COM)</div>
+          <div class="card-tags"><span class="tag">IBIS-AMI</span><span class="tag">COM</span><span class="tag">Eye mask</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg7 c7">SI</span>
+          <div class="card-title">Equalization Techniques</div>
+          <div class="card-sub">TX pre-emphasis, RX CTLE, DFE, FFE — theory and implementation for 28G/56G+ SerDes</div>
+          <div class="card-tags"><span class="tag">CTLE</span><span class="tag">DFE</span><span class="tag">56G</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg7 c7">SI</span>
+          <div class="card-title">Power Plane Analysis</div>
+          <div class="card-sub">Plane resonance, anti-pad capacitance, simultaneous switching noise (SSN), SPICE PDN extraction</div>
+          <div class="card-tags"><span class="tag">SSN</span><span class="tag">Plane resonance</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg7 c7">SI</span>
+          <div class="card-title">EM Simulation &amp; Tools</div>
+          <div class="card-sub">2.5D (Momentum, Sonnet), 3D FEM (HFSS, CST), method of moments — extracting S-params from structures</div>
+          <div class="card-tags"><span class="tag">HFSS</span><span class="tag">CST</span><span class="tag">MoM</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── TIER 4: SYSTEMS, RELIABILITY & INNOVATION ─── -->
+  <div class="divider">Tier IV — Systems Thinking, Reliability &amp; Innovation</div>
+
+  <div class="row row-2">
+
+    <!-- 8. System Architecture & Complex SoC -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c6)"></div>
+        <div class="section-title c6">System Architecture &amp; SoC Integration</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-master">MASTER</div>
+          <span class="card-badge bg6 c6">Architecture</span>
+          <div class="card-title">Mixed-Signal SoC Partitioning</div>
+          <div class="card-sub">Analog-digital boundary, substrate isolation strategy, deep N-well, trench isolation, noise budget</div>
+          <div class="card-tags"><span class="tag">Substrate</span><span class="tag">DNW</span><span class="tag">Trench iso.</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-master">MASTER</div>
+          <span class="card-badge bg6 c6">Architecture</span>
+          <div class="card-title">Advanced CMOS Process Nodes</div>
+          <div class="card-sub">7nm/5nm/3nm design rules, DTCO, coloring, EUV constraints — circuit design implications</div>
+          <div class="card-tags"><span class="tag">DTCO</span><span class="tag">EUV</span><span class="tag">7nm+</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg6 c6">Architecture</span>
+          <div class="card-title">Heterogeneous Integration</div>
+          <div class="card-sub">Chiplets, 2.5D/3D IC, UCIe, HBM, interposer design, thermal stacking challenges</div>
+          <div class="card-tags"><span class="tag">Chiplets</span><span class="tag">UCIe</span><span class="tag">HBM</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg6 c6">Architecture</span>
+          <div class="card-title">Sensor Interface ASICs</div>
+          <div class="card-sub">AFE for biosensors, MEMS, imaging; chopper stabilization; correlated double sampling; readout chains</div>
+          <div class="card-tags"><span class="tag">AFE</span><span class="tag">Chopper</span><span class="tag">CDS</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg6 c6">Architecture</span>
+          <div class="card-title">Security Hardware</div>
+          <div class="card-sub">PUF, TRNG, secure key storage, side-channel attack (SCA) countermeasures, tamper detection</div>
+          <div class="card-tags"><span class="tag">PUF</span><span class="tag">TRNG</span><span class="tag">SCA</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg6 c6">Architecture</span>
+          <div class="card-title">AI/ML Hardware Accelerators</div>
+          <div class="card-sub">Analog in-memory compute, neuromorphic circuits, weight precision, ADC requirements for DNN inference</div>
+          <div class="card-tags"><span class="tag">IMC</span><span class="tag">Neuromorphic</span><span class="tag">CIM</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+    <!-- 9. Reliability, Qualification & Standards -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c9)"></div>
+        <div class="section-title c9">Reliability, Qualification &amp; Standards</div>
+        <div class="section-count">6 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-master">MASTER</div>
+          <span class="card-badge bg9 c9">Reliability</span>
+          <div class="card-title">Physics of Failure (PoF)</div>
+          <div class="card-sub">Failure mechanism identification, acceleration models (Arrhenius, Coffin-Manson, Black's), FIT rates</div>
+          <div class="card-tags"><span class="tag">Arrhenius</span><span class="tag">Coffin-Manson</span><span class="tag">FIT</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-master">MASTER</div>
+          <span class="card-badge bg9 c9">Reliability</span>
+          <div class="card-title">Qualification Standards</div>
+          <div class="card-sub">AEC-Q100/Q101/Q200, JEDEC JESD47, IPC-9592, MIL-STD-883 — test plans, sample sizes, lot acceptance</div>
+          <div class="card-tags"><span class="tag">AEC-Q100</span><span class="tag">JEDEC</span><span class="tag">MIL-STD</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg9 c9">Reliability</span>
+          <div class="card-title">HALT &amp; HASS</div>
+          <div class="card-sub">Highly accelerated life/stress screening — combined stress profiling, precipitating latent defects</div>
+          <div class="card-tags"><span class="tag">HALT</span><span class="tag">HASS</span><span class="tag">Combined stress</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg9 c9">Reliability</span>
+          <div class="card-title">ESD &amp; Latch-Up</div>
+          <div class="card-sub">HBM/CDM/MM models, ESD protection topologies (ggNMOS, SCR, diode clamps), TLP characterization</div>
+          <div class="card-tags"><span class="tag">HBM</span><span class="tag">CDM</span><span class="tag">SCR</span><span class="tag">TLP</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg9 c9">Reliability</span>
+          <div class="card-title">Functional Safety</div>
+          <div class="card-sub">ISO 26262 (ASIL), IEC 61508 (SIL), diagnostic coverage, hardware fault tolerance, FMEDA</div>
+          <div class="card-tags"><span class="tag">ISO 26262</span><span class="tag">ASIL-D</span><span class="tag">FMEDA</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg9 c9">Reliability</span>
+          <div class="card-title">Radiation Hardening</div>
+          <div class="card-sub">TID, SEE (SEU, SET, SEL), hardening by design (HBD), triple-modular redundancy, space qualification</div>
+          <div class="card-tags"><span class="tag">TID</span><span class="tag">SEU</span><span class="tag">TMR</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── TIER 5: LEADERSHIP & INSTITUTIONAL KNOWLEDGE ─── -->
+  <div class="divider">Tier V — Principal / Fellow — Leadership &amp; Legacy</div>
+
+  <div class="row row-3">
+
+    <!-- 10. Technical Leadership & Strategy -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c10)"></div>
+        <div class="section-title c10">Technical Leadership &amp; Strategy</div>
+        <div class="section-count">5 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-principal">PRINCIPAL</div>
+          <span class="card-badge bg10 c10">Leadership</span>
+          <div class="card-title">Technology Roadmapping</div>
+          <div class="card-sub">5–10 year horizon scanning, competitor analysis, make vs buy, platform decisions, silicon roadmap ownership</div>
+          <div class="card-tags"><span class="tag">Roadmap</span><span class="tag">Platform</span><span class="tag">Make/buy</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-principal">PRINCIPAL</div>
+          <span class="card-badge bg10 c10">Leadership</span>
+          <div class="card-title">IP Portfolio Strategy</div>
+          <div class="card-sub">Patent filing strategy, freedom-to-operate analysis, IP licensing, defensive publication, trade secrets</div>
+          <div class="card-tags"><span class="tag">Patent</span><span class="tag">FTO</span><span class="tag">Licensing</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg10 c10">Leadership</span>
+          <div class="card-title">Ecosystem &amp; Supply Chain</div>
+          <div class="card-sub">Foundry relationships, EDA vendor management, OSAT qualification, component lifecycle, dual-source strategy</div>
+          <div class="card-tags"><span class="tag">Foundry</span><span class="tag">OSAT</span><span class="tag">Dual-source</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg10 c10">Leadership</span>
+          <div class="card-title">Mentorship &amp; Knowledge Transfer</div>
+          <div class="card-sub">Structured apprenticeship, design review pedagogy, architectural taste, institutional memory preservation</div>
+          <div class="card-tags"><span class="tag">Mentorship</span><span class="tag">Reviews</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg10 c10">Leadership</span>
+          <div class="card-title">Standards Body Participation</div>
+          <div class="card-sub">IEEE working groups, JEDEC committees, IEC TC47, influencing industry standards from inside</div>
+          <div class="card-tags"><span class="tag">IEEE</span><span class="tag">JEDEC</span><span class="tag">IEC TC47</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+    <!-- 11. PCB & Module — Expert Level -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c6)"></div>
+        <div class="section-title c6">Advanced PCB &amp; Module Design</div>
+        <div class="section-count">5 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-master">MASTER</div>
+          <span class="card-badge bg6 c6">PCB</span>
+          <div class="card-title">Ultra-High-Speed PCB</div>
+          <div class="card-sub">112G PAM4, CPO, backplane channels, via stubs, MEGTRON/Panasonic laminates, loss budgets</div>
+          <div class="card-tags"><span class="tag">112G PAM4</span><span class="tag">CPO</span><span class="tag">Loss budget</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-master">MASTER</div>
+          <span class="card-badge bg6 c6">PCB</span>
+          <div class="card-title">HDI &amp; Any-Layer Boards</div>
+          <div class="card-sub">Stacked/staggered microvias, laser-drilled, via-in-pad, IPC-2226, reliability of buried vias</div>
+          <div class="card-tags"><span class="tag">HDI</span><span class="tag">Microvia</span><span class="tag">VIP</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg6 c6">PCB</span>
+          <div class="card-title">Embedded Components</div>
+          <div class="card-sub">Resistors/capacitors in PCB core, buried actives, reliability considerations, Würth/TTM processes</div>
+          <div class="card-tags"><span class="tag">Embedded R/C</span><span class="tag">Buried active</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg6 c6">PCB</span>
+          <div class="card-title">Thermal Management — Board Level</div>
+          <div class="card-sub">Thermal vias, coin inserts, vapor chamber integration, system-level CFD co-simulation with layout</div>
+          <div class="card-tags"><span class="tag">Thermal vias</span><span class="tag">Vapor chamber</span><span class="tag">CFD</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg6 c6">PCB</span>
+          <div class="card-title">Advanced DFM / DFA</div>
+          <div class="card-sub">Panel utilization, yield loss models, assembly defect analysis, X-ray/3D AXI in NPI, CPK targets</div>
+          <div class="card-tags"><span class="tag">AXI</span><span class="tag">CPK</span><span class="tag">DFA</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+    <!-- 12. Emerging Technologies -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-dot" style="background:var(--c2)"></div>
+        <div class="section-title c2">Emerging Technologies &amp; Future Domains</div>
+        <div class="section-count">5 topics</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="level level-principal">PRINCIPAL</div>
+          <span class="card-badge bg2c c2">Emerging</span>
+          <div class="card-title">Quantum-Adjacent Hardware</div>
+          <div class="card-sub">Cryogenic CMOS, control electronics for qubits, dilution refrigerator interfaces, low-noise cryo-amps</div>
+          <div class="card-tags"><span class="tag">Cryo-CMOS</span><span class="tag">Qubit control</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <div class="level level-principal">PRINCIPAL</div>
+          <span class="card-badge bg2c c2">Emerging</span>
+          <div class="card-title">Photonic Integration</div>
+          <div class="card-sub">Silicon photonics, co-packaged optics (CPO), EO modulator drivers, TIA design for optical receivers</div>
+          <div class="card-tags"><span class="tag">SiPh</span><span class="tag">CPO</span><span class="tag">TIA</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg2c c2">Emerging</span>
+          <div class="card-title">Flexible &amp; Printed Electronics</div>
+          <div class="card-sub">Organic TFT, stretchable substrates, inkjet-printed circuits, e-skin, wearable sensor integration</div>
+          <div class="card-tags"><span class="tag">OTFT</span><span class="tag">e-skin</span><span class="tag">Stretchable</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg2c c2">Emerging</span>
+          <div class="card-title">Energy Harvesting</div>
+          <div class="card-sub">Piezoelectric, thermoelectric, RF harvesting, MPPT algorithms, ultra-low quiescent power management</div>
+          <div class="card-tags"><span class="tag">Piezo</span><span class="tag">TEG</span><span class="tag">MPPT</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+        <div class="card">
+          <span class="card-badge bg2c c2">Emerging</span>
+          <div class="card-title">Neuromorphic &amp; Analog AI</div>
+          <div class="card-sub">Memristors, phase-change memory, analog weight update, spike-based computing circuits</div>
+          <div class="card-tags"><span class="tag">Memristor</span><span class="tag">PCM</span><span class="tag">SNN</span></div>
+        <div class="card-click-hint">↗ search resources</div></div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">hardware-knowledge-map · 50-year edition · 12 domains · 68 topics</div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div> Legend — rare expertise</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent2)"></div> Master — deep domain ownership</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent3)"></div> Principal — strategic + technical</div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.card').forEach(card => {
+    // Add hover hint
+    const hint = document.createElement('div');
+    hint.className = 'card-click-hint';
+    hint.innerHTML = '↗ search resources';
+    card.appendChild(hint);
+
+    card.addEventListener('click', () => {
+      const title = card.querySelector('.card-title')?.textContent.trim() || '';
+      const tags  = Array.from(card.querySelectorAll('.tag')).map(t => t.textContent).slice(0, 3).join(' ');
+      const query = title + ' ' + tags + ' hardware design engineer';
+      window.open('https://www.google.com/search?q=' + encodeURIComponent(query), '_blank');
+    });
+  });
+});
+</script>
+
+
+</body></html>
